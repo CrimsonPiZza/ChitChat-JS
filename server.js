@@ -1,5 +1,5 @@
 const mongo = require('mongodb').MongoClient;
-const client = require('socket.io').listen(80).sockets;
+const client = require('socket.io').listen(process.env.PORT || 5000).sockets;
 const uri = "mongodb+srv://kyle06:dante0604@chitchat-db-vqryt.mongodb.net/test?retryWrites=true&w=majority";
 const cli = new mongo(uri, {useNewParser:true});
 //mongodb+srv://kyle06:dante0604@chitchat-db-vqryt.mongodb.net/test?retryWrites=true&w=majority
