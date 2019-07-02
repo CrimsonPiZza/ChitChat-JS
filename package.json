@@ -1,0 +1,15 @@
+{
+  "name": "chitchat",
+  "version": "1.0.0",
+  "description": "Chitchat webapp using MongoDB and Socket.io",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Hourn Sovannara",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.2.7",
+    "socket.io": "^2.0.3"
+  }
+}
