@@ -4,7 +4,7 @@
   "description": "Chitchat webapp using MongoDB and Socket.io",
   "main": "server.js",
   "scripts": {
-    "start script": "node server.js"
+    "start": "node server.js"
   },
   "author": "Hourn Sovannara",
   "license": "ISC",
