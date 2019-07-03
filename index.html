@@ -41,7 +41,6 @@
                 var element = function(id){
                     return document.getElementById(id);
                 }
-
                 //Get Element
                 var status = element('status');
                 var messages = element('messages');
@@ -62,10 +61,10 @@
                         },4000);
                     }
                 }
-            
+                
                 //connect to socket.io
-                var socket = io.connect('https://fast-fortress-12750.herokuapp.com/:80');
-
+                var socket = io.connect('https://fast-fortress-12750.herokuapp.com');
+                console.log(socket)
                 //check for connection
                 if (socket != undefined){
                     console.log("Connected to socket.io .....");
