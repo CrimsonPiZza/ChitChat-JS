@@ -63,7 +63,9 @@
                 }
                 
                 //connect to socket.io
-                var socket = io.connect('https://fast-fortress-12750.herokuapp.com');
+                var port = process.env.PORT
+                var socket = io.connect('https://fast-fortress-12750.herokuapp.com:'+port);h
+                //ttp://127.0.0.1:5500https://fast-fortress-12750.herokuapp.com:
                 console.log(socket)
                 //check for connection
                 if (socket != undefined){
