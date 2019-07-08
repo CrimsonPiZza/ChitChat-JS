@@ -3,11 +3,6 @@ const client = require('socket.io').listen(process.env.PORT||5000).sockets;
 //mongodb+srv://kyle06:dante0604@chitchat-db-vqryt.mongodb.net/test\?retryWrites=true&w=majority
 const uri = "mongodb+srv://kyle06:dante0604@chitchat-db-vqryt.mongodb.net/test?retryWrites=true&w=majority";
 const cli = new mongo(uri, {useNewParser:true});
-//mongodb+srv://kyle06:dante0604@chitchat-db-vqryt.mongodb.net/test?retryWrites=true&w=majority
-// Connect to mongo
-// const MongoClient = require(‘mongodb’).MongoClient;
-// const uri = "mongodb+srv://kyle06:<password>@chitchat-db-vqryt.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
 cli.connect(err => {
 
     if(err){
