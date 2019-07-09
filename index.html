@@ -41,6 +41,7 @@
                 var element = function(id){
                     return document.getElementById(id);
                 }
+
                 //Get Element
                 var status = element('status');
                 var messages = element('messages');
@@ -61,13 +62,10 @@
                         },4000);
                     }
                 }
-                
-                //connect to socket.io
 
-                //'https://fast-fortress-12750.herokuapp.com:'+port
-                var socket = io.connect('https://fast-fortress-12750.herokuapp.com/');
-                //ttp://127.0.0.1:5500https://fast-fortress-12750.herokuapp.com:
-                console.log(socket)
+                //connect to socket.io
+                var socket = io.connect('https://guarded-bastion-83697.herokuapp.com/');
+
                 //check for connection
                 if (socket != undefined){
                     console.log("Connected to socket.io .....");
@@ -82,8 +80,12 @@
                                 message.setAttribute('class','chat-message');
                                 message.textContent = data[x].name+" : "+data[x].message;
                                 messages.appendChild(message);
+                                if (messages.scrollTop >= messages.scrollHeight - 400){
+                                    messages.scrollTop = messages.scrollHeight;
+                                }
                                 // messages.insertBefore(message,messages.firstChild);
                             }
+                            
                         }
                     });
 
@@ -91,11 +93,9 @@
                    socket.on('status', function(data){
                         // get message status
                         setStatus((typeof data === 'object') ? data.message : data);
-
                         //if status is clear, clear text
                         if (data.clear){
                             textarea.value = '';
-
                         }
                    });
 
@@ -107,6 +107,7 @@
                         event.preventDefault();
                        }
                    })
+
                 }
             })();
         </script>

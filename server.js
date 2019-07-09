@@ -9,7 +9,7 @@ cli.connect(err => {
         throw err;
     }
     console.log('MongoDB connected...');
-    
+
     // Connect to Socket.io
     client.on('connection', function(socket){
         //let chat = db.collection('chats');
