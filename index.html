@@ -80,7 +80,7 @@
                                 message.setAttribute('class','chat-message');
                                 message.textContent = data[x].name+" : "+data[x].message;
                                 messages.appendChild(message);
-                                if (messages.scrollTop >= messages.scrollHeight - 400){
+                                if (messages.scrollTop >= messages.scrollHeight * 3/4){
                                     messages.scrollTop = messages.scrollHeight;
                                 }
                                 // messages.insertBefore(message,messages.firstChild);
