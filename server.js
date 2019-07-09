@@ -44,10 +44,7 @@ cli.connect(err => {
                     socket.emit('output', [data]);
 
                     // Send status object
-                    sendStatus({
-                        message: 'Message sent',
-                        clear: true
-                    });
+                    sendStatus('Message Sent');
                 });
             }
         });
