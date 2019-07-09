@@ -49,14 +49,13 @@ cli.connect(err => {
             }
         });
 
-        // Handle clear
-        socket.on('clear', function(data){
-            // Remove all chats from collection
-            chat.remove({}, function(){
-                // Emit cleared
-                socket.emit('cleared');
-            });
-        });
     });
 })
 
+// socket.on('clear', function(data){
+//     // Remove all chats from collection
+//     chat.remove({}, function(){
+//         // Emit cleared
+//         socket.emit('cleared');
+//     });
+// });
