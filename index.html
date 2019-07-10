@@ -7,22 +7,77 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>ChitChat</title>
         <style>
-            #messages{height: 300px; overflow-y: auto;}
-            .chat-message{width:f; margin-left: 0.5%; margin-top: 0.5%}
+            body{
+                background-color: #524aac;
+            }
+            #messages{
+                height: 300px; 
+                overflow-y: auto;}
+            .chat-message{
+                width:fit-content;
+                margin-left: 1%;
+                margin-right: 1%; 
+                padding: 1%;
+                background-color: #524aac;
+                font-size: 18px;
+                color: white;}
+
+            .chat-head-Admin{
+                color:#c62828;
+            }
+
+            .chat-head-Student{
+                color: #0277bd;
+            }
+
+            .chat-head-Lecturer{
+                color: #2e7d32;
+            }
+
+            div[class ^= 'chat-head']{
+                width: fit-content;
+                margin-left: 1%;
+                margin-right: 1%;
+                margin-top: 1%;
+                padding: 1%;
+                background-color: #19227c;
+                /* border-top-right-radius: 5%;
+                border-top-left-radius: 5%; */
+                font-weight: bold;
+                font-size: 14px;
+                color: whit
+                }
+            
         </style>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 col-sm-12">
-                    <h1 class="text-center">
+                    <h1 class="text-center" style="color:white ">
                         ChitChat
                         <button id="clearbutt" class="btn btn-danger">Clear</button>
                     </h1>
-                    <div id="status"></div>
+                    <!-- <br>
+                    <select id="room_select" class="browser-default custom-select">
+                            <option value="Admin">Admin</option>
+                            <option value="Lecturer">Lecturer</option>
+                            <option value="Student">Student</option>
+                    </select> -->
+                    <br>
+                    <select id="role_select" class="browser-default custom-select">
+                            <option value="Admin">Admin</option>
+                            <option value="Lecturer">Lecturer</option>
+                            <option value="Student">Student</option>
+                    </select>
+                    <br>
+                    <br>   
+                    <div id="status" style="color: white"></div>
+                    <br>
                     <div id="chat">
                         <input type="text" id="username" class="form-control" placeholder="Enter your name...">
                         <br>
+                    
                         <div class="card">
                             <div id="messages" class="card-block">
 
@@ -48,6 +103,7 @@
                 var textarea = element('textarea');
                 var username = element('username');
                 var clearBtn = element('clearbutt');
+                var role = element('role_select')
 
                 //Get default status
                 var statusDefault = status.textContent;
@@ -65,7 +121,7 @@
 
                 //connect to socket.io
                 var socket = io.connect('https://guarded-bastion-83697.herokuapp.com/');
-
+                // socket.emit('room_selection','chatbox');
                 //check for connection
                 if (socket != undefined){
                     console.log("Connected to socket.io .....");
@@ -77,8 +133,12 @@
                             for(var x = 0; x < data.length; x++){
                                 //Build out msg div
                                 var message = document.createElement('div');
+                                var uname = document.createElement('div');
                                 message.setAttribute('class','chat-message');
-                                message.textContent = data[x].name+" : "+data[x].message;
+                                uname.setAttribute('class',`chat-head-${data[x].role}`);
+                                message.textContent = data[x].message;
+                                uname.textContent = `(${data[x].role}) - ` + data[x].name;
+                                messages.appendChild(uname);
                                 messages.appendChild(message);
                                 if (messages.scrollTop >= messages.scrollHeight*3/4){
                                     messages.scrollTop = messages.scrollHeight;
@@ -99,7 +159,7 @@
                    textarea.addEventListener('keydown',function(event){
                        if (event.which === 13 && event.shiftKey == false){
                         //emit to server input
-                        socket.emit('input',{name:username.value,message:textarea.value});
+                        socket.emit('input',{name:username.value,message:textarea.value,role:role.value});
                         textarea.value = ''
                         event.preventDefault();
                        }
