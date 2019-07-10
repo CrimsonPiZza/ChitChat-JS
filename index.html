@@ -47,7 +47,10 @@
                 font-size: 14px;
                 color: whit
                 }
-            
+            #role_select{
+                margin-top: 5%;
+                margin-bottom: 5%;
+            }
         </style>
     </head>
     <body>
@@ -58,22 +61,20 @@
                         ChitChat
                         <button id="clearbutt" class="btn btn-danger">Clear</button>
                     </h1>
-                    <!-- <br>
+                    <br>
                     <select id="room_select" class="browser-default custom-select">
-                            <option value="Admin">Admin</option>
-                            <option value="Lecturer">Lecturer</option>
-                            <option value="Student">Student</option>
-                    </select> -->
+                            <option value="B6SCA-R001">Section A</option>
+                            <option value="B6SCB-R001">Section B</option>
+                            <option value="B6SCC-R001">Section C</option>
+                            <option value="AR-R001">Admin Room</option>
+                    </select>
                     <br>
                     <select id="role_select" class="browser-default custom-select">
                             <option value="Admin">Admin</option>
                             <option value="Lecturer">Lecturer</option>
                             <option value="Student">Student</option>
                     </select>
-                    <br>
-                    <br>   
                     <div id="status" style="color: white"></div>
-                    <br>
                     <div id="chat">
                         <input type="text" id="username" class="form-control" placeholder="Enter your name...">
                         <br>
@@ -103,7 +104,8 @@
                 var textarea = element('textarea');
                 var username = element('username');
                 var clearBtn = element('clearbutt');
-                var role = element('role_select')
+                var role = element('role_select');
+                var room = element('room_select');
 
                 //Get default status
                 var statusDefault = status.textContent;
@@ -121,7 +123,7 @@
 
                 //connect to socket.io
                 var socket = io.connect('https://guarded-bastion-83697.herokuapp.com/');
-                // socket.emit('room_selection','chatbox');
+                socket.emit('room_selection',room.value);
                 //check for connection
                 if (socket != undefined){
                     console.log("Connected to socket.io .....");
@@ -140,9 +142,11 @@
                                 uname.textContent = `(${data[x].role}) - ` + data[x].name;
                                 messages.appendChild(uname);
                                 messages.appendChild(message);
-                                if (messages.scrollTop >= messages.scrollHeight*3/4){
+                                if (messages.scrollTop >= messages.scrollHeight-500){
                                     messages.scrollTop = messages.scrollHeight;
                                 }
+                                console.log(`Scroll : ${message.scrollTop}`)
+                                console.log(`Height : ${messages.scrollHeight-500}`)
                                 // messages.insertBefore(message,messages.firstChild);
                             }
                             
