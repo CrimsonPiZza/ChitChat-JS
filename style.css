@@ -7,7 +7,7 @@ body{
     width: inherit;
 }
 .chat-message{
-    width:fit-content;
+    width:auto;
     margin-left: 1%;
     margin-right: 1%; 
     padding: 1%;
@@ -35,7 +35,7 @@ div[class ^= 'timestamp']{
 }
 
 div[class ^= 'chat-head']{
-    width: auto;
+    width: fit-content;
     margin-left: 1%;
     margin-right: 1%;
     margin-top: 1%;
