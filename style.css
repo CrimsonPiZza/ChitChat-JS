@@ -1,0 +1,54 @@
+body{
+    background-color: #424242;
+}
+#messages{
+    height: 500px; 
+    overflow-y: auto;}
+.chat-message{
+    width:fit-content;
+    margin-left: 1%;
+    margin-right: 1%; 
+    padding: 1%;
+    background-color: #BDBDBD;
+    font-size: 18px;
+    color: black;}
+
+div[class ^= 'chat-head-Admin']{
+    color:#ef5350;
+}
+
+div[class ^= 'chat-head-Student']{
+    color: #42A5F5;
+}
+
+div[class ^= 'chat-head-Lecturer']{
+    color: #66BB6A;
+}
+
+div[class ^= 'timestamp']{
+    font-size: 12px;
+    text-align: right;
+    margin-right: 1.5%;
+    margin-bottom: 2%;
+}
+
+div[class ^= 'chat-head']{
+    width: fit-content;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    padding: 1%;
+    background-color: #757575;
+    /* border-top-right-radius: 5%;
+    border-top-left-radius: 5%; */
+    font-weight: bold;
+    font-size: 16px;
+    }
+#role_select{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#mainbox{
+    margin-top: 2%;
+}
