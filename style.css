@@ -7,7 +7,7 @@ body{
     width: inherit;
 }
 .chat-message{
-    width:fit-content;
+    width:max-content;
     margin-left: 1%;
     margin-right: 1%; 
     padding: 1%;
